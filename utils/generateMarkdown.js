@@ -41,11 +41,80 @@ function renderLicenseSection(license) {
     }
 }
 
+function hasContributors() {
+  if (sections.includes("Contributing")) {
+    return `* [Contributing](#contributing)`;
+  } else {
+    return ""
+  }
+}
+
+function hasTests() {
+  if (sections.includes("Tests")) {
+    return `* [Tests](#tests)`;
+  } else {
+    return ""
+  }
+}
+
+function renderContributing() {
+  if (glconfirm) {
+    return `## Contributing
+    This project utilizes the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
+    `;
+  } else if (!glconfirm) {
+    return `## Contributing
+    ${data.customguidelines}
+    `
+  }
+}
+
+function renderTesting () {
+  if (sections.includes("Tests")) {
+    return `## Testing
+    $(data.teststeps)
+    `
+  }
+}
+
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.title}
+    ## Badges
+    ${renderLicenseBadge(data.license)}
 
+    ## Table of Contents
+    * [License](#license)
+    * [Description](#description)
+    * [Installation](#installation)
+    * [Usage](#usage)
+    ${hasContributors()}
+    ${hasTests()}
+    * [Questions?](#questions)
+
+    ## License
+    ${renderLicenseSection(data.license)}
+    ${renderLicenseLink(data.license)}
+
+    ## Description
+    ${data.description}
+
+    ## Installation
+    ${data.install}
+
+    ## Usage
+    ${data.usage}
+
+    ${renderContributing()}
+
+    ${renderTesting()}
+
+    ## Questions
+    If you have any questions on this project, please [open an issue](https://github.com/${github}/${repo}/issues), or contact me via [email](mailto:${email}subject=[Github%20Question%20-%20{$title}]).
 `;
 }
+
+module.exports = generateMarkdown;
 
 module.exports = generateMarkdown;

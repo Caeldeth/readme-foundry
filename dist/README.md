@@ -3,13 +3,14 @@
 [![License: Mozilla Public License 2.0](https://img.shields.io/badge/License-MPL%202.0-orange?style=plastic&logo=appveyor)](https://www.mozilla.org/en-US/MPL/2.0/)
 
 ## Table of Contents
-* [License](#license)
-* [Description](#description)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Contributing](#contributing)
+  - [Badges](#badges)
+  - [License](#license)
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Questions](#questions)
 
-* [Questions?](#questions)
 
 ## License
 Read more about Mozilla 2.0 here:
@@ -28,12 +29,7 @@ To use this application, simply answer the prompts. Once complete, move the gene
 
 ## Contributing
 This project utilizes the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
-    
 
-
-
-
-
-# Questions
+## Questions
 If you have any questions on this project, please [open an issue](https://github.com/Caeldeth/readme-foundry/tree/main), or contact me via [email](mailto:tacolejr@gmail.com?subject=[Github%20Question%20-%20ReadMe%20Foundry]).
   

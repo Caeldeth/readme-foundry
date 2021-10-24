@@ -32,11 +32,35 @@ const questions = [
         },
     },
     {
-        type: "checkbox",
-        message: "What optional sections would you like to add?",
-        name: "sections",
-        // don't give options for description, table of contents, installation, usage, license, questions
-        choices: ["Contributing", "Tests"],
+        type: "confirm",
+        message: "Do you want to include contributor information?",
+        name: "contribs",
+        default: "No"
+    },
+    {
+        type: "confirm",
+        message: "Press Y for the Contributor Covenant, N for Custom guidelines",
+        name: "glconfirm",
+        default: "Yes",
+        when(answers) {
+            return answers.contribs == "Yes"
+        }
+    },
+    {
+        type: "input",
+        message: "What are the contributor guidelines?",
+        name: "customcontribs",
+        validate: (customcontribs) => {
+            if (customcontribs) {
+                return true;
+            } else {
+                console.log("You must enter contributor guidelines!");
+                return false;
+            }
+        },
+        when(answers) {
+            return answers.glconfirm == "No"
+        }
     },
     {
         type: "input",
@@ -48,43 +72,25 @@ const questions = [
         message: "What is the usage information?",
         name: "usage",
     },
-    // Conditional for selecting contribution guidelines based on optional sections checkbox value
     {
-        type: "list",
-        message: "Would you like to include the Contributor Covenant or custom contribution guidelines?",
-        name: "glconfirm",
-        choices: ["Contributor Covenant", "Custom"],
-        default: "Contributor Covenant",
-        when: (answers) => answers.sections.includes('Contributing')
+        type: "confirm",
+        message: "Do you want to include testing information?",
+        name: "testing",
+        default: "No"
     },
-    {
-        type: "input",
-        message: "What are your custom contribution guidelines?",
-        name: "customguidelines",
-        validate: (customguidelines) => {
-            if (customguidelines) {
-                return true;
-            } else {
-                console.log("You must enter a custom guidelines!");
-                return false;
-            }
-        },
-        when: (answers) => answers.glconfirm.includes("Custom")
-    },
-    // Conditionals for test steps if included
     {
         type: "input",
         message: "What are the test instructions?",
         name: "teststeps",
-        validate: (teststepsInput) => {
-            if (teststepsInput) {
+        validate: (teststeps) => {
+            if (teststeps) {
                 return true;
             } else {
-                console.log("You must enter a custom guidelines!");
+                console.log("You must enter a testing instructions!");
                 return false;
             }
         },
-        when: (answers) => answers.sections.includes("Tests")
+        when: ({ testing }) => testing
     },
     // License selection
     {

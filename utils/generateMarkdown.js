@@ -41,20 +41,20 @@ function renderLicenseSection(license) {
     }
 }
 
-function hasContributors(sections) {
-  if (sections = null) {
+function hasContributors(contribs) {
+  if (contribs == "No") {
     return ""
-  } else if (sections.includes("Contributing")) {
+  } else if (contribs == "Yes") {
     return `* [Contributing](#contributing)`;
   } else {
     return ""
   }
 }
 
-function hasTests(sections) {
-  if (sections = null) {
+function hasTests(testing) {
+  if (testing == "No") {
     return ""
-  } else if (sections.includes("Tests")) {
+  } else if (testing == "Yes") {
     return `* [Tests](#tests)`;
   } else {
     return ""
@@ -62,15 +62,13 @@ function hasTests(sections) {
 }
 
 function renderContributing(glconfirm) {
-  if (glconfirm = null) {
-    return ""
-  } else if (glconfirm) {
+  if (glconfirm == "Yes") {
     return `## Contributing
     This project utilizes the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
     `;
-  } else if (!glconfirm) {
+  } else if (glconfirm == "No") {
     return `## Contributing
-    ${data.customguidelines}
+    ${data.customcontribs}
     `
   } else {
     return ""
@@ -78,11 +76,11 @@ function renderContributing(glconfirm) {
 }
 
 function renderTesting (sections) {
-  if (sections = null) {
+  if (testing = "No") {
     return ""
-  } else if (sections.includes("Tests")) {
+  } else if (testing = "Yes") {
     return `## Testing
-    $(data.teststeps)
+    ${data.teststeps}
     `
   } else {
     return ""
@@ -93,37 +91,37 @@ function renderTesting (sections) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.title}
-    ## Badges
-    ${renderLicenseBadge(data.license)}
+## Badges
+${renderLicenseBadge(data.license)}
 
-    ## Table of Contents
-    * [License](#license)
-    * [Description](#description)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    ${hasContributors(data.sections)}
-    ${hasTests(data.sections)}
-    * [Questions?](#questions)
+## Table of Contents
+* [License](#license)
+* [Description](#description)
+* [Installation](#installation)
+* [Usage](#usage)
+${hasContributors(data.sections)}
+${hasTests(data.sections)}
+* [Questions?](#questions)
 
-    ## License
-    ${renderLicenseSection(data.license)}
-    ${renderLicenseLink(data.license)}
+## License
+${renderLicenseSection(data.license)}
+${renderLicenseLink(data.license)}
 
-    ## Description
-    ${data.description}
+## Description
+${data.description}
 
-    ## Installation
-    ${data.install}
+## Installation
+${data.install}
 
-    ## Usage
-    ${data.usage}
+## Usage
+${data.usage}
 
-    ${renderContributing(data.glconfirm)}
+${renderContributing(data.contribs)}
 
-    ${renderTesting(data.sections)}
+${renderTesting(data.testing)}
 
-    ## Questions
-    If you have any questions on this project, please [open an issue](https://github.com/${data.username}/${data.repo}/issues), or contact me via [email](mailto:${data.email}subject=[Github%20Question%20-%20${data.title}]).
+## Questions
+If you have any questions on this project, please [open an issue](https://github.com/${data.username}/${data.repo}/issues), or contact me via [email](mailto:${data.email}subject=[Github%20Question%20-%20${data.title}]).
 `;
 }
 

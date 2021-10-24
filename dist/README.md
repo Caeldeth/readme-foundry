@@ -11,7 +11,6 @@
   - [Contributing](#contributing)
   - [Questions](#questions)
 
-
 ## License
 Read more about Mozilla 2.0 here:
 [Mozilla 2.0](https://www.mozilla.org/en-US/MPL/2.0/)
@@ -31,5 +30,9 @@ To use this application, simply answer the prompts. Once complete, move the gene
 This project utilizes the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
 ## Questions
-If you have any questions on this project, please [open an issue](https://github.com/Caeldeth/readme-foundry/tree/main), or contact me via [email](mailto:tacolejr@gmail.com?subject=[Github%20Question%20-%20ReadMe%20Foundry]).
+If you have any questions on this project:
+* please [open an issue](https://github.com/Caeldeth/readme-foundry)
+* or contact me via [email](mailto:tacolejr@gmail.com?subject=[Github%20Question%20-%20test%20test%20test]).
+
+Visit my [profile](https://github.com/Caeldeth) to see more great projects!
   

@@ -1,14 +1,14 @@
 {
-  "name": "static-site",
+  "name": "readme-foundry",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Caeldeth",
+  "license": "MPL 2.0",
   "dependencies": {
     "inquirer": "^8.2.0"
   },
-  "description": ""
+  "description": "A professional readme generator."
 }

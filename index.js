@@ -19,11 +19,11 @@ const questions = [
         },
     },
     {
-        type: "input",
+        type: "editor",
         message: "What is the project description? (Required)",
         name: "description",
-        validate: (descriptionInput) => {
-            if (descriptionInput) {
+        validate: (descriptionEditor) => {
+            if (descriptionEditor) {
                 return true;
             } else {
                 console.log("You must enter a project description!");
@@ -42,16 +42,14 @@ const questions = [
         message: "Press Y for the Contributor Covenant, N for Custom guidelines",
         name: "glconfirm",
         default: "Yes",
-        when(answers) {
-            return answers.contribs == "Yes"
-        }
+        when: ({ contribs }) => contribs
     },
     {
-        type: "input",
+        type: "editor",
         message: "What are the contributor guidelines?",
-        name: "customcontribs",
-        validate: (customcontribs) => {
-            if (customcontribs) {
+        name: "mygl",
+        validate: (myglEditor) => {
+            if (myglEditor) {
                 return true;
             } else {
                 console.log("You must enter contributor guidelines!");
@@ -59,11 +57,11 @@ const questions = [
             }
         },
         when(answers) {
-            return answers.glconfirm == "No"
+            return answers.glconfirm == false
         }
     },
     {
-        type: "input",
+        type: "editor",
         message: "What are the steps for installation?",
         name: "installsteps",
     },
@@ -73,24 +71,9 @@ const questions = [
         name: "usage",
     },
     {
-        type: "confirm",
-        message: "Do you want to include testing information?",
-        name: "testing",
-        default: "No"
-    },
-    {
         type: "input",
         message: "What are the test instructions?",
         name: "teststeps",
-        validate: (teststeps) => {
-            if (teststeps) {
-                return true;
-            } else {
-                console.log("You must enter a testing instructions!");
-                return false;
-            }
-        },
-        when: ({ testing }) => testing
     },
     // License selection
     {
@@ -107,7 +90,7 @@ const questions = [
     },
     {
         type: "input",
-        message: "Provide a link to the repo",
+        message: "Provide a link to the repo: ",
         name: "repo"
     },
     {

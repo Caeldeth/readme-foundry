@@ -3,11 +3,11 @@ const licenseArr = ["Mozilla 2.0", "MIT", "Apache 2.0"];
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
     if (license === licenseArr[0]) {
-        return `[![License: Mozilla Public License 2.0](https://img.shields.io/badge/License-MPL%202.0-orange?style=plastic&logo=appveyor](https://www.mozilla.org/en-US/MPL/2.0/)`;
+        return `[![License: Mozilla Public License 2.0](https://img.shields.io/badge/License-MPL%202.0-orange?style=plastic&logo=appveyor)](https://www.mozilla.org/en-US/MPL/2.0/)`;
     } else if (license === licenseArr[1]) {
-        return `[![License: MIT License](https://img.shields.io/badge/License-Apache%202.0-yellow?style=plastic&logo=appveyor](https://opensource.org/licenses/MIT)`;
+        return `[![License: MIT License](https://img.shields.io/badge/License-Apache%202.0-yellow?style=plastic&logo=appveyor)](https://opensource.org/licenses/MIT)`;
     } else if (license === licenseArr[1]) {
-        return `[![License: Apache License 2.0](https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=appveyor](https://www.apache.org/licenses/LICENSE-2.0)`;
+        return `[![License: Apache License 2.0](https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=appveyor)](https://www.apache.org/licenses/LICENSE-2.0)`;
     } else {
         return "";
     }
@@ -42,51 +42,61 @@ function renderLicenseSection(license) {
 }
 
 function hasContributors(contribs) {
-  if (contribs == "No") {
+  if (contribs == false) {
     return ""
-  } else if (contribs == "Yes") {
+  } else if (contribs == true) {
     return `* [Contributing](#contributing)`;
   } else {
     return ""
   }
 }
 
-function hasTests(testing) {
-  if (testing == "No") {
+function hasTests(teststeps) {
+  if (teststeps.length < 1) {
     return ""
-  } else if (testing == "Yes") {
+  } else {
     return `* [Tests](#tests)`;
-  } else {
-    return ""
   }
 }
 
-function renderContributing(glconfirm) {
-  if (glconfirm == "Yes") {
+function renderCovenant(glconfirm) {
+  if (glconfirm) {
     return `## Contributing
-    This project utilizes the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
+This project utilizes the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
     `;
-  } else if (glconfirm == "No") {
+  } else {
+    return ""
+  }
+}
+
+function renderCustomGL(mygl) {
+  if (mygl !== undefined) {
     return `## Contributing
-    ${data.customcontribs}
+${mygl}
     `
   } else {
     return ""
   }
 }
 
-function renderTesting (sections) {
-  if (testing = "No") {
+function renderTesting(teststeps) {
+  if (teststeps.length < 1) {
     return ""
-  } else if (testing = "Yes") {
+  } else {
     return `## Testing
-    ${data.teststeps}
+${teststeps}
     `
-  } else {
-    return ""
   }
 }
 
+function renderQuestions(repo, email, title) {
+  let tempTitle = title
+  let smartTitle = tempTitle.replace(/\s/g, '%20');
+  console.log("smartTitle Value is: ", smartTitle);
+  return `## Questions
+If you have any questions on this project, please [open an issue](${repo}), or contact me via [email](mailto:${email}?subject=[Github%20Question%20-%20${smartTitle}]).
+  `
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
@@ -99,8 +109,8 @@ ${renderLicenseBadge(data.license)}
 * [Description](#description)
 * [Installation](#installation)
 * [Usage](#usage)
-${hasContributors(data.sections)}
-${hasTests(data.sections)}
+${hasContributors(data.contribs)}
+${hasTests(data.teststeps)}
 * [Questions?](#questions)
 
 ## License
@@ -111,17 +121,18 @@ ${renderLicenseLink(data.license)}
 ${data.description}
 
 ## Installation
-${data.install}
+${data.installsteps}
 
 ## Usage
 ${data.usage}
 
-${renderContributing(data.contribs)}
+${renderCovenant(data.glconfirm)}
 
-${renderTesting(data.testing)}
+${renderCustomGL(data.mygl)}
 
-## Questions
-If you have any questions on this project, please [open an issue](https://github.com/${data.username}/${data.repo}/issues), or contact me via [email](mailto:${data.email}subject=[Github%20Question%20-%20${data.title}]).
+${renderTesting(data.teststeps)}
+
+${renderQuestions(data.repo, data.email, data.title)}
 `;
 }
 

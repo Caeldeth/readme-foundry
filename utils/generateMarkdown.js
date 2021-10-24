@@ -89,12 +89,19 @@ ${teststeps}
   }
 }
 
-function renderQuestions(repo, email, title) {
-  let tempTitle = title
+function renderQuestions(username, repo, email, title) {
+  let tempTitle = title;
   let smartTitle = tempTitle.replace(/\s/g, '%20');
-  console.log("smartTitle Value is: ", smartTitle);
+
+  let tempName = username;
+  let smartName = tempName.charAt(0).toUpperCase() + tempName.slice(1).toLowerCase();
+
   return `## Questions
-If you have any questions on this project, please [open an issue](${repo}), or contact me via [email](mailto:${email}?subject=[Github%20Question%20-%20${smartTitle}]).
+If you have any questions on this project:
+* please [open an issue](${repo})
+* or contact me via [email](mailto:${email}?subject=[Github%20Question%20-%20${smartTitle}]).
+
+Visit my [profile](https://github.com/${smartName}) to see more great projects!
   `
 }
 
@@ -132,7 +139,7 @@ ${renderCustomGL(data.mygl)}
 
 ${renderTesting(data.teststeps)}
 
-${renderQuestions(data.repo, data.email, data.title)}
+${renderQuestions(data.username, data.repo, data.email, data.title)}
 `;
 }
 

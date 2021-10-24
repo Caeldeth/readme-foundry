@@ -54,7 +54,7 @@ const questions = [
         name: "glconfirm",
         choices: ["Contributor Covenant", "Custom"],
         default: "Contributor Covenant",
-        when: ({ sectionsCheckbox }) => sectionsCheckbox.includes("Contributing"),
+        when: (answers) => answers.sections.includes('Contributing')
     },
     {
         type: "input",
@@ -68,7 +68,7 @@ const questions = [
                 return false;
             }
         },
-        when: ({ glconfirmList }) => glconfirmList.includes("Custom"),
+        when: (answers) => answers.glconfirm.includes("Custom")
     },
     // Conditionals for test steps if included
     {
@@ -83,7 +83,7 @@ const questions = [
                 return false;
             }
         },
-        when: ({ sectionsCheckbox }) => sectionsCheckbox.includes("Contributor"),
+        when: (answers) => answers.sections.includes("Tests")
     },
     // License selection
     {
@@ -123,7 +123,7 @@ function init() {
 // Function call to initialize app
 init()
     .then((answers) => generateMarkdown(answers))
-    .then((generatedReadMe) => writeToFile("README.md", generatedReadMe))
+    .then((generatedReadMe) => writeToFile('.dist/README.md', generatedReadMe))
     .catch((err) => {
         console.log(err);
     });
